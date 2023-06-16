@@ -45,6 +45,7 @@ public class HuskHomesCommand extends Command implements TabProvider {
             "help", false,
             "reload", true,
             "import", true,
+            "bulk", true,
             "update", true
     );
 
@@ -129,9 +130,13 @@ public class HuskHomesCommand extends Command implements TabProvider {
                 }
                 this.importData(executor, removeFirstArg(args));
             }
+            case "bulk" -> this.performBulkAction(executor, removeFirstArg(args));
             default -> plugin.getLocales().getLocale("error_invalid_syntax", getUsage())
                     .ifPresent(executor::sendMessage);
         }
+    }
+
+    private void performBulkAction(@NotNull CommandUser executor, @NotNull String[] args) {
     }
 
     private void importData(@NotNull CommandUser executor, String[] args) {
